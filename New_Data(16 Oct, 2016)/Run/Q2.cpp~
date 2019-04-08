@@ -1,0 +1,52 @@
+#include<iostream>
+#include<fstream>
+#include<math.h>
+
+using namespace std;
+
+int main()
+{
+  ofstream f, g;
+  f.open("f.csv", ios::out);
+  g.open("g.csv", ios::out);
+  
+  float t[13] = {0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0}; 
+  float x[13] = {0.70, 1.22, 2.11, 3.07, 3.25, 2.80, 2.11, 1.30, 0.70, 0.45, 0.88, 2.00, 3.25};
+  float y[13] = {2.25, 1.77, 1.61, 1.75, 2.30, 2.76, 2.91, 2.76, 2.25, 1.37, 0.56, 0.08, 0.25};
+  
+  float Qf[13][13], Qg[13][13];
+  
+  int i,j;
+  
+  for(i=0; i<13; i++)
+  	{
+  	  Qf[i][0] = x[i];
+  	  Qg[i][0] = y[i]; 
+  	}
+  	
+  
+  for(float h=0; h<12.1; h = h + 0.1)
+   { 
+   
+    for(i=1; i<13; i++)
+  	{
+  	  for(j=1; j<=i; j++)
+  	  	{  
+  	  	   Qf[i][j] = ((h - t[i-j])*Qf[i][j-1] - (h - t[i])*Qf[i-1][j-1])/(t[i] - t[i-j]);
+  	  	   Qg[i][j] = ((h - t[i-j])*Qg[i][j-1] - (h - t[i])*Qg[i-1][j-1])/(t[i] - t[i-j]);	   
+  	  	}
+  	}
+  	
+  	f<<h<<"\t"<<Qf[12][12]<<"\n";
+  	g<<h<<"\t"<<Qg[12][12]<<"\n"; 
+  	
+   }	
+  
+
+f.close();
+g.close();
+
+return 0;
+
+
+}
