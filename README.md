@@ -1,0 +1,2 @@
+# summer-project-2015
+A repository containing all the work I did in the summer of 2015 at The Institute of Mathematical Sciences, Chennai. The project was based on the simulation of a square-triangular Ising model and the numerical calculations of various observables such as Energy, Specific Heat, Magnetization, Entropy, Autocorrelations, etc. All the codes were written in C++11. The folder called "Report" has a pdf containing a short summary of the project.
